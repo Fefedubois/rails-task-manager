@@ -1,0 +1,26 @@
+<div id= "container">
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  Voici les taches du jour!
+</div>
+
+<p> <%= link_to("Ajouter une tache", new_task_path) %> </p>
+<ul>
+
+<% @tasks.each do |task| %>
+<h3><%= link_to task.title, task_path(task)  %></h3>
+  <%= form_for(task) do |f| %>
+    <%= f.label :completed %>
+    <%= f.check_box :completed %>
+  <% end %>
+  <div class="btn btn-danger">
+  <%= link_to 'Delete this task', task_path(task),
+             method: :delete,
+             data: { confirm: 'Are you sure to delete this task?' } %>
+  </div>
+
+<% end %>
+
+</ul>
+
+</div>
